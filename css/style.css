@@ -12,7 +12,7 @@ body {
     -webkit-user-select: none;
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
-
+    background-color: #121212;
 }
 
 ul {
@@ -62,6 +62,17 @@ li {
     height: 44px;
     position: fixed;
     bottom: 0;
+}
+
+.refresh {
+    background-color: white;
+    -webkit-mask-image: url("../img/Navigation_Refresh.png");
+    width: 18px;
+    height: 23px;
+    display: block;
+    background-size: cover;
+    float: right;
+    margin: 10px 15px;
 }
 
 .bus {
