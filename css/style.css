@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+
 html {
     margin: 0;
     padding: 0;
@@ -22,5 +24,29 @@ body {
     width: 150px;
     display: inline-block;
     margin: 10px;
+}
 
+.bus {
+    background: rgb(69,72,77); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(69,72,77,1) 0%, rgba(0,0,0,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+
+    color: white;
+    padding: 10px 25px;
+    border-radius: 8px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+}
+
+.destination {
+    font-family: 'Roboto', sans-serif;
+}
+
+.time {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    float: right;
 }

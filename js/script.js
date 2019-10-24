@@ -13,7 +13,8 @@ const app = new Vue({
             for (let prediction in api_data) {
                 if (api_data.hasOwnProperty(prediction)) {
 
-                    let timeToArrival = '';
+                    let timeToArrival = 0;
+                    let timeToArrivalReadable = '';
                     let arrivalTime = '';
                     let live = false;
 
@@ -21,22 +22,29 @@ const app = new Vue({
 
                     if (api_data[prediction]['ExpectedArrival'] !== '') {
                         live = true;
-                        arrivalTime = moment(api_data[prediction]['ExpectedArrival'], 'YYYY-MM-DDThh:mm:ss+01').unix();
-                        timeToArrival = moment(api_data[prediction]['ExpectedArrival'], 'YYYY-MM-DDThh:mm:ss+01') - time;
-                        timeToArrival = moment(timeToArrival).format('hh:mm:ss');
+                        arrivalTime = moment(api_data[prediction]['ExpectedArrival'], 'YYYY-MM-DDThh:mm:ss+01');
                     }
 
                     else {
                         live = false;
-                        arrivalTime = moment(api_data[prediction]['ScheduledArrival'], 'YYYY-MM-DDThh:mm:ss+01').unix();
-                        timeToArrival = moment(api_data[prediction]['ScheduledArrival'], 'YYYY-MM-DDThh:mm:ss+01') - time;
-                        timeToArrival = moment(timeToArrival).format('hh:mm:ss');
+                        arrivalTime = moment(api_data[prediction]['ScheduledArrival'], 'YYYY-MM-DDThh:mm:ss+01');
+                    }
+
+                    timeToArrival = Math.round(moment.duration(arrivalTime - time).asMinutes());
+
+                    if (timeToArrival > 1) {
+                        timeToArrivalReadable = timeToArrival.toString() + 'mins'
+                    } else if (timeToArrival === 1) {
+                        timeToArrivalReadable = timeToArrival.toString() + 'min'
+                    } else if (timeToArrival === 0) {
+                        timeToArrivalReadable = 'Due'
                     }
 
                     this.predictions.push({
                         'bus': api_data[prediction]['LineName'].toUpperCase(),
                         'destination': api_data[prediction]['Towards'],
                         'timeToArrival': timeToArrival,
+                        'timeToArrivalReadable': timeToArrivalReadable,
                         'arrivalTime': arrivalTime,
                         'live': live
                     });

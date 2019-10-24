@@ -8,7 +8,12 @@
         </div>
 
         <ul>
-            <li v-for="prediction in predictions">{{ prediction }}</li>
+            <li v-for="prediction in predictions">
+                <span class="bus">{{ prediction['bus'] }}</span>
+                <span class="destination">{{ prediction['destination'] }}</span>
+                <span class="time">{{ prediction['timeToArrivalReadable'] }}</span>
+                <span class="live" v-if="prediction['live']">Live</span>
+            </li>
         </ul>
     </div>
 </body>
