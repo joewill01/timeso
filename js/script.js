@@ -49,6 +49,51 @@ function get_times() {
                     'live': live
                 });
 
+                app.predictions.push({
+                    'bus': api_data[prediction]['LineName'].toUpperCase(),
+                    'destination': api_data[prediction]['Towards'],
+                    'timeToArrival': timeToArrival,
+                    'timeToArrivalReadable': timeToArrivalReadable,
+                    'arrivalTime': arrivalTime,
+                    'live': live
+                });
+
+                app.predictions.push({
+                    'bus': api_data[prediction]['LineName'].toUpperCase(),
+                    'destination': api_data[prediction]['Towards'],
+                    'timeToArrival': timeToArrival,
+                    'timeToArrivalReadable': timeToArrivalReadable,
+                    'arrivalTime': arrivalTime,
+                    'live': live
+                });
+
+                app.predictions.push({
+                    'bus': api_data[prediction]['LineName'].toUpperCase(),
+                    'destination': api_data[prediction]['Towards'],
+                    'timeToArrival': timeToArrival,
+                    'timeToArrivalReadable': timeToArrivalReadable,
+                    'arrivalTime': arrivalTime,
+                    'live': live
+                });
+
+                app.predictions.push({
+                    'bus': api_data[prediction]['LineName'].toUpperCase(),
+                    'destination': api_data[prediction]['Towards'],
+                    'timeToArrival': timeToArrival,
+                    'timeToArrivalReadable': timeToArrivalReadable,
+                    'arrivalTime': arrivalTime,
+                    'live': live
+                });
+
+                app.predictions.push({
+                    'bus': api_data[prediction]['LineName'].toUpperCase(),
+                    'destination': api_data[prediction]['Towards'],
+                    'timeToArrival': timeToArrival,
+                    'timeToArrivalReadable': timeToArrivalReadable,
+                    'arrivalTime': arrivalTime,
+                    'live': live
+                });
+
                 app.predictions.sort(function (a, b) {
                     return a.arrivalTime - b.arrivalTime
                 });

@@ -26,28 +26,30 @@
             <p class="header" v-else>Station</p>
         </div>
 
-        <div class="refresh-holder">
-            <button onclick="get_times()">Refresh</button>
+        <div class="content">
+            <ul>
+                <li v-for="prediction in predictions">
+                    <span class="bus">{{ prediction['bus'] }}</span>
+                    <span class="destination">{{ prediction['destination'] }}</span>
+                    <span class="live" v-if="prediction['live']">LIVE {{ prediction['timeToArrivalReadable'] }}</span>
+                    <span class="time" v-else>{{ prediction['timeToArrivalReadable'] }}</span>
+                    <span class="breaker"></span>
+                </li>
+            </ul>
         </div>
 
-        <ul>
-            <li v-for="prediction in predictions">
-                <span class="bus">{{ prediction['bus'] }}</span>
-                <span class="destination">{{ prediction['destination'] }}</span>
-                <span class="live" v-if="prediction['live']">LIVE {{ prediction['timeToArrivalReadable'] }}</span>
-                <span class="time" v-else>{{ prediction['timeToArrivalReadable'] }}</span>
-                <span class="breaker"></span>
-            </li>
-        </ul>
+        <div class="tab-bar">
+            <button onclick="get_times()">Refresh</button>
+        </div>
     </div>
 
 </body>
 
-<link rel="stylesheet" type="text/css" href="css/style.css?v=1.1">
+<link rel="stylesheet" type="text/css" href="css/style.css?v=1.1.1">
 <script src="js/vue.min.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="js/moment.js"></script>
-<script src="js/script.js?v=1.1.5"></script>
+<script src="js/script.js?v=1.1.6"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
