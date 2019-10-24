@@ -3,8 +3,9 @@
 
 <head>
     <title>Timeso</title>
+    <link rel="manifest" href="manifest.json">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <link rel="apple-touch-icon" href="img/ios-logo.png">
+    <link rel="apple-touch-icon" href="img/icons-180.png">
     <!-- iPhone Xs Max, 11 Pro Max (1242px x 2688px) -->
     <link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)" href="img/apple-launch-1242x2688.png">
     <!-- iPhone Xr, 11 (828px x 1792px) -->
@@ -24,6 +25,11 @@
             <span class="logo"></span>
         </div>
 
+        <div class="refresh-holder">
+            <button onclick="get_times()"></button>
+        </div>
+
+
         <ul>
             <li v-for="prediction in predictions">
                 <span class="bus">{{ prediction['bus'] }}</span>
@@ -34,6 +40,8 @@
             </li>
         </ul>
     </div>
+
+
 </body>
 
 <link rel="stylesheet" type="text/css" href="css/style.css">
