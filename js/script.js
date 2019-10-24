@@ -49,24 +49,6 @@ const app = new Vue({
                         'live': live
                     });
 
-                    this.predictions.push({
-                        'bus': api_data[prediction]['LineName'].toUpperCase(),
-                        'destination': api_data[prediction]['Towards'],
-                        'timeToArrival': timeToArrival,
-                        'timeToArrivalReadable': timeToArrivalReadable,
-                        'arrivalTime': arrivalTime,
-                        'live': live
-                    });
-
-                    this.predictions.push({
-                        'bus': api_data[prediction]['LineName'].toUpperCase(),
-                        'destination': api_data[prediction]['Towards'],
-                        'timeToArrival': timeToArrival,
-                        'timeToArrivalReadable': timeToArrivalReadable,
-                        'arrivalTime': arrivalTime,
-                        'live': live
-                    });
-
                     this.predictions.sort(function(a, b){return a.arrivalTime - b.arrivalTime});
                 }
             }
