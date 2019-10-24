@@ -33,12 +33,30 @@ const app = new Vue({
                     timeToArrival = Math.round(moment.duration(arrivalTime - time).asMinutes());
 
                     if (timeToArrival > 1) {
-                        timeToArrivalReadable = timeToArrival.toString() + 'mins'
+                        timeToArrivalReadable = timeToArrival.toString() + ' mins'
                     } else if (timeToArrival === 1) {
-                        timeToArrivalReadable = timeToArrival.toString() + 'min'
+                        timeToArrivalReadable = timeToArrival.toString() + ' min'
                     } else if (timeToArrival === 0) {
                         timeToArrivalReadable = 'Due'
                     }
+
+                    this.predictions.push({
+                        'bus': api_data[prediction]['LineName'].toUpperCase(),
+                        'destination': api_data[prediction]['Towards'],
+                        'timeToArrival': timeToArrival,
+                        'timeToArrivalReadable': timeToArrivalReadable,
+                        'arrivalTime': arrivalTime,
+                        'live': live
+                    });
+
+                    this.predictions.push({
+                        'bus': api_data[prediction]['LineName'].toUpperCase(),
+                        'destination': api_data[prediction]['Towards'],
+                        'timeToArrival': timeToArrival,
+                        'timeToArrivalReadable': timeToArrivalReadable,
+                        'arrivalTime': arrivalTime,
+                        'live': live
+                    });
 
                     this.predictions.push({
                         'bus': api_data[prediction]['LineName'].toUpperCase(),

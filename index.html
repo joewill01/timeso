@@ -11,8 +11,9 @@
             <li v-for="prediction in predictions">
                 <span class="bus">{{ prediction['bus'] }}</span>
                 <span class="destination">{{ prediction['destination'] }}</span>
-                <span class="time">{{ prediction['timeToArrivalReadable'] }}</span>
-                <span class="live" v-if="prediction['live']">Live</span>
+                <span class="live" v-if="prediction['live']">LIVE {{ prediction['timeToArrivalReadable'] }}</span>
+                <span class="time" v-else>{{ prediction['timeToArrivalReadable'] }}</span>
+                <span class="breaker"></span>
             </li>
         </ul>
     </div>
