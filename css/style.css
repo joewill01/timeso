@@ -61,6 +61,8 @@ li {
 
 .destination {
     font-family: 'Roboto', sans-serif;
+    float: left;
+    margin-top: 1px;
 }
 
 .time {
