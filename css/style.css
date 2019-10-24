@@ -52,6 +52,9 @@ li {
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
     margin-right: 8px;
+    
+    width: 75px;
+    text-align: center;
 }
 
 .destination {
