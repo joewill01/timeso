@@ -15,7 +15,7 @@ body {
 
 ul {
     list-style: none;
-    margin: 5px 0 0 0;
+    margin-top: 20px;
     padding: 0;
 }
 
@@ -47,13 +47,15 @@ li {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
 
     color: white;
-    padding: 10px 25px;
+    padding: 8px 0px;
     border-radius: 8px;
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
-    margin-right: 8px;
+    margin-right: 12px;
+    margin-top: -7px;
     
-    width: 75px;
+    float: left;
+    width: 60px;
     text-align: center;
 }
 
@@ -67,6 +69,7 @@ li {
     font-size: 14px;
     float: right;
     margin-right: 7px;
+    margin-top: 3px;
 }
 
 .live {
