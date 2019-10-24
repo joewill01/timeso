@@ -1,6 +1,6 @@
 const app = new Vue({
     el: "#app",
-    data: { predictions: [] },
+    data: { predictions: [], stationName: '' },
     mounted() { get_times() }
 });
 
@@ -52,6 +52,8 @@ function get_times() {
                 app.predictions.sort(function (a, b) {
                     return a.arrivalTime - b.arrivalTime
                 });
+
+                app.stationName = api_data[prediction]["StationName"];
             }
         }
         console.log(time)

@@ -22,11 +22,12 @@
 <body>
     <div id="app">
         <div class="navbar">
-            <span class="logo"></span>
+            <p class="header" v-if="stationName">{{ stationName }}</p>
+            <p class="header" v-else>Station</p>
         </div>
 
         <div class="refresh-holder">
-            <button onclick="get_times()"></button>
+            <button onclick="get_times()">Refresh</button>
         </div>
 
         <ul>
