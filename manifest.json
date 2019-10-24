@@ -18,8 +18,9 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "",
+  "start_url": "/timeso/",
   "background_color": "#000000",
   "display": "standalone",
+  "scope": "/timeso",
   "theme_color": "#000000"
 }
