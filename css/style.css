@@ -56,8 +56,8 @@ li {
 
 .navbar .back {
     position: absolute;
-    left: 0;
-    margin: 11px 22px;
+    left: 22px;
+    top: 11px;
 }
 
 .back_arrow {
