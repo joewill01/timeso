@@ -45,6 +45,41 @@ li {
     margin: 0;
 }
 
+.navbar .nav-btn {
+    font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 17px;
+    background: none;
+    color: #057bff;
+    border: none;
+}
+
+.navbar .back {
+    position: absolute;
+    left: 0;
+    margin: 11px 22px;
+}
+
+.back_arrow {
+    background-color: #057bff;
+    -webkit-mask-size: 22px;
+    -webkit-mask-image: url("https://image.flaticon.com/icons/png/512/16/16049.png");
+    width: 22px;
+    height: 22px;
+    background-size: cover;
+    display: block;
+    position: absolute;
+
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+
+    margin: 11px 6px;
+
+}
+
 .content {
     background-color: #010101;
     position: fixed;

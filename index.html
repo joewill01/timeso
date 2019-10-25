@@ -24,8 +24,17 @@
 <body>
     <div id="app">
         <div class="navbar">
+
+            <span class="icon back_arrow"></span>
+
+            <button class="nav-btn back">
+
+                Back
+            </button>
+
             <p class="header" v-if="stationName">{{ stationName }}</p>
-            <p class="header" v-else>Station</p>
+            <p class="header" v-else>Loading</p>
+
         </div>
 
         <div class="content">
