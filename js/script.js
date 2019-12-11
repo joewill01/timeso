@@ -4,7 +4,33 @@ const app = new Vue({
     mounted() { get_times() }
 });
 
+
 function get_times() {
+    axios.get("http://transportapi.com/v3/uk/bus/stop/43000312304/live.json?app_id=b3bcf524&app_key=954ba16e33264c93d56fd1cb79dc3d30")
+    .then(response => {
+
+        let currentTime = moment(response['request_time'], 'YYYY-MM-DDThh:mm:ss+00:00');
+        let arrivalTime = '';
+
+        for (let service in response['data']['departures']) {
+            if (response['data']['departures'].hasOwnProperty(service)) {
+                for (let journey in response['data']['departures'][service]) {
+                    if (response['data']['departures'][service].hasOwnProperty(journey)) {
+                        journey = response['data']['departures'][service][journey];
+
+                        arrivalTime = moment((journey['expected_departure_date'] + 'T' + journey['best_departure_estimate']), 'YYYY-MM-DDThh:mm');
+
+                        app.predictions.push(journey['line_name'] + journey['direction']);
+
+                    }
+                }
+            }
+        }
+    })
+}
+
+
+function get_timess() {
     axios.get("https://cors-anywhere.herokuapp.com/http://api.tfwm.org.uk/StopPoint/43000312301/Arrivals?app_id=3f1c6cd7&app_key=7f46797c63d120abde6f83c36bbbf3d6&formatter=JSON")
     .then(response => {
         let time = '';
@@ -58,6 +84,5 @@ function get_times() {
                 app.stationName = api_data[prediction]["StationName"];
             }
         }
-        console.log(time)
     })
 }

@@ -24,8 +24,17 @@
 <body>
     <div id="app">
         <div class="navbar">
+
+            <span class="icon back_arrow"></span>
+            <button class="nav-btn back">
+                Back
+            </button>
+
+            <span onclick="get_times()" class="refresh"></span>
+
             <p class="header" v-if="stationName">{{ stationName }}</p>
-            <p class="header" v-else>Station</p>
+            <p class="header" v-else>Loading {{ predictions }}</p>
+
         </div>
 
         <div class="content">
@@ -41,13 +50,13 @@
         </div>
 
         <div class="tab-bar">
-            <span onclick="get_times()" class="refresh"></span>
+            <span class="favorite"></span>
         </div>
     </div>
 
 </body>
 
-<link rel="stylesheet" type="text/css" href="css/style.css?v=1.1.9">
+<link rel="stylesheet" type="text/css" href="css/style.css?v=1.1.12">
 <script src="js/vue.min.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="js/moment.js"></script>

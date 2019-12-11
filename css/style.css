@@ -45,6 +45,41 @@ li {
     margin: 0;
 }
 
+.navbar .nav-btn {
+    font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 17px;
+    background: none;
+    color: #057bff;
+    border: none;
+}
+
+.navbar .back {
+    position: absolute;
+    left: 22px;
+    top: 11px;
+}
+
+.back_arrow {
+    background-color: #057bff;
+    -webkit-mask-size: 22px;
+    -webkit-mask-image: url("https://image.flaticon.com/icons/png/512/16/16049.png");
+    width: 22px;
+    height: 22px;
+    background-size: cover;
+    display: block;
+    position: absolute;
+
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+
+    margin: 11px 6px;
+
+}
+
 .content {
     background-color: #010101;
     position: fixed;
@@ -66,13 +101,36 @@ li {
 
 .refresh {
     background-color: white;
-    -webkit-mask-image: url("../img/Navigation_Refresh.png");
-    width: 18px;
-    height: 23px;
+    -webkit-mask-size: 17px;
+    -webkit-mask-image: url("../img/refresh_nav.png");
+
+    position: absolute;
+
+    right: 12px;
+    top: 12px;
+
+    width: 17px;
+    height: 20px;
     display: block;
     background-size: cover;
-    float: right;
-    margin: 10px 15px;
+}
+
+.favorite {
+    background-color: white;
+    background-size: cover;
+
+    -webkit-mask-size: 25px;
+    -webkit-mask-image: url("../img/favorite.png");
+
+    display: block;
+
+    position: absolute;
+
+    right: 10px;
+    top: 10px;
+
+    width: 25px;
+    height: 25px;
 }
 
 .bus {
