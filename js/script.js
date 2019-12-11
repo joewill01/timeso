@@ -1,31 +1,79 @@
 const app = new Vue({
     el: "#app",
     data: { predictions: [], stationName: '' },
-    mounted() { get_times() }
+    mounted() {
+        get_times();
+
+        axios.interceptors.request.use(function(config) {
+
+            app.predictions = [];
+            app.stationName = '';
+            return config;
+
+        }, function(error) {
+          // Do something with request error
+          console.log('Error');
+          return Promise.reject(error);
+        });
+    },
+
 });
 
 
 function get_times() {
+
+
     axios.get("http://transportapi.com/v3/uk/bus/stop/43000312304/live.json?app_id=b3bcf524&app_key=954ba16e33264c93d56fd1cb79dc3d30")
     .then(response => {
+        app.stationName = response['data']['stop_name'];
 
-        let currentTime = moment(response['request_time'], 'YYYY-MM-DDThh:mm:ss+00:00');
-        let arrivalTime = '';
+        let currentTime = moment(response['data']['request_time'], 'YYYY-MM-DDThh:mm:ss+00:00');
 
         for (let service in response['data']['departures']) {
             if (response['data']['departures'].hasOwnProperty(service)) {
                 for (let journey in response['data']['departures'][service]) {
                     if (response['data']['departures'][service].hasOwnProperty(journey)) {
+
+                        let arrivalTime = '';
+                        let timeToArrival = 0;
+                        let timeToArrivalReadable = '';
+                        let live = false;
+
                         journey = response['data']['departures'][service][journey];
 
-                        arrivalTime = moment((journey['expected_departure_date'] + 'T' + journey['best_departure_estimate']), 'YYYY-MM-DDThh:mm');
+                        arrivalTime = moment((journey['date'] + 'T' + journey['best_departure_estimate']), 'YYYY-MM-DDThh:mm');
 
-                        app.predictions.push(journey['line_name'] + journey['direction']);
+                        timeToArrival = Math.round(moment.duration(arrivalTime - currentTime).asMinutes());
 
+                        if (timeToArrival > 1) {
+                            timeToArrivalReadable = timeToArrival.toString() + ' mins'
+                        } else if (timeToArrival === 1) {
+                            timeToArrivalReadable = timeToArrival.toString() + ' min'
+                        } else if (timeToArrival === 0) {
+                            timeToArrivalReadable = 'Due'
+                        }
+
+                        if (journey['expected_departure_time']) {
+                            live = true;
+                        }
+
+                        app.predictions.push({
+                                'id': journey['id'],
+                                'bus': journey['line_name'].toUpperCase(),
+                                'destination': journey['direction'],
+                                'timeToArrival': timeToArrival,
+                                'timeToArrivalReadable': timeToArrivalReadable,
+                                'arrivalTime': arrivalTime,
+                                'live': live
+                            })
                     }
                 }
             }
         }
+
+        app.predictions.sort(function (a, b) {
+            return a.arrivalTime - b.arrivalTime
+        });
     })
 }
 

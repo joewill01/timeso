@@ -33,7 +33,7 @@
             <span onclick="get_times()" class="refresh"></span>
 
             <p class="header" v-if="stationName">{{ stationName }}</p>
-            <p class="header" v-else>Loading {{ predictions }}</p>
+            <p class="header" v-else>Loading</p>
 
         </div>
 
@@ -47,6 +47,13 @@
                     <span class="breaker"></span>
                 </li>
             </ul>
+        </div>
+
+        <div class="loading-holder">
+            <div class="loading-box">
+                <span></span>
+                <h1>Please wait...</h1>
+            </div>
         </div>
 
         <div class="tab-bar">

@@ -28,6 +28,57 @@ li {
     height: 43px;
 }
 
+.loading-holder {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    display: flex;
+
+    background-color: rgba(0,0,0,0.7);
+    z-index: 999;
+
+    transition: ease all 0.5s;
+}
+
+.loading-box {
+    align-self: center;
+    margin: auto;
+    width: 300px;
+    height: 70px;
+
+    border-radius: 20px;
+
+    background-color: white;
+
+    display: flex;
+}
+
+.loading-box h1 {
+    align-self: center;
+    margin: auto;
+
+    color: black;
+    font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.loading-box span {
+    background-image: url("../img/ZKZg.gif");
+    background-size: cover;
+    display: block;
+
+    width: 24px;
+    height: 24px;
+
+    margin-top: 23px;
+    margin-left: 23px;
+
+}
+
 .navbar {
     text-align: center;
     background-color: #121212;
