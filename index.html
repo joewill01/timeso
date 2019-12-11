@@ -33,7 +33,7 @@
             <span onclick="get_times()" class="refresh"></span>
 
             <p class="header" v-if="stationName">{{ stationName }}</p>
-            <p class="header" v-else>Loading</p>
+            <p class="header" v-else></p>
 
         </div>
 
@@ -49,12 +49,15 @@
             </ul>
         </div>
 
-        <div class="loading-holder">
-            <div class="loading-box">
-                <span></span>
-                <h1>Please wait...</h1>
+
+        <div class="md-modal md-effect-1" id="modal-1">
+			<div class="md-content">
+                    <span></span>
+                    <h1>Please wait...</h1>
             </div>
         </div>
+	    <div class="md-overlay"></div>
+
 
         <div class="tab-bar">
             <span class="favorite"></span>
@@ -64,8 +67,9 @@
 </body>
 
 <link rel="stylesheet" type="text/css" href="css/style.css?v=1.1.12">
+<script src="js/jquery-3.4.1.min.js"></script>
 <script src="js/vue.min.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="js/axios.min.js"></script>
 <script src="js/moment.js"></script>
 <script src="js/script.js?v=1.1.7"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
