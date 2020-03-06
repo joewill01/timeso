@@ -1,3 +1,7 @@
+// PREFERENCES
+let version = 11;
+
+
 const app = new Vue({
     el: "#app",
     data: { predictions: [], stationName: '' },
@@ -21,9 +25,31 @@ const app = new Vue({
     },
 });
 
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i <ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+function setCookie(cname, cvalue, exdays) {
+  var d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  var expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
 
 function get_times() {
-    axios.get("https://transportapi.com/v3/uk/bus/stop/43000312301/live.json?app_id=c3e7de7c&app_key=7e0ced32fcfcfc3afe87056d60680d74")
+    axios.get("httpps://transportapi.com/v3/uk/bus/stop/43000312301/live.json?app_id=c3e7de7c&app_key=7e0ced32fcfcfc3afe87056d60680d74")
     .then(response => {
 
         app.stationName = response['data']['stop_name'];
@@ -79,3 +105,40 @@ function get_times() {
     })
 }
 
+function show_update() {
+    changes_animation = new anime.timeline({
+        easing: "easeOutExpo",
+        duration: 1000,
+    })
+
+    changes_animation
+    .add({
+        targets: "#changelog",
+        top: 0,
+    })
+    .add({
+        targets: "#info",
+        height: "100px",
+        opacity: 1
+    }, 1500)
+}
+
+function close_update() {
+    anime({
+        easing: "easeOutExpo",
+        duration: 1000,
+        targets: "#changelog",
+        top: "100%"
+    })
+}
+
+window.onload = function() {
+show_update();
+/*
+    if (getCookie("version") < version) {
+        show_update();
+        setCookie("version", version, 999999999)
+    }
+
+*/
+}

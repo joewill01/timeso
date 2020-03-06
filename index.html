@@ -3,8 +3,9 @@
 
 <head>
     <title>Timeso</title>
+    <!--
     <link rel="manifest" href="manifest.json?v=1.1">
-
+    -->
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="apple-touch-icon" href="img/icons-180.png">
@@ -22,7 +23,15 @@
 </head>
 
 <body>
+
     <div id="app">
+        <div class="changelog" id="changelog">
+            <h1>Timeso has<br>been updated!</h1>
+            <div class="info" id="info">
+
+                <button onclick="close_update()">get started</button>
+            </div>
+        </div>
         <div class="navbar">
 
             <span class="icon back_arrow"></span>
@@ -49,7 +58,6 @@
             </ul>
         </div>
 
-
         <div class="md-modal md-effect-1" id="modal-1">
 			<div class="md-content">
                 <span></span>
@@ -57,7 +65,6 @@
             </div>
         </div>
 	    <div class="md-overlay"></div>
-
 
         <div class="tab-bar">
             <span class="favorite"></span>
@@ -67,6 +74,7 @@
 </body>
 
 <link rel="stylesheet" type="text/css" href="css/style.css?v=1.2">
+<script src="js/anime.min.js"></script>
 <script src="js/jquery-3.4.1.min.js"></script>
 <script src="js/vue.min.js"></script>
 <script src="js/axios.min.js"></script>

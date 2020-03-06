@@ -4,6 +4,7 @@ html {
     margin: 0;
     padding: 0;
     background-color: #121212;
+    font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
 }
 
 body {
@@ -26,6 +27,61 @@ li {
     margin: 0;
     background-color: #1c1c1e;
     height: 43px;
+}
+
+.changelog {
+    z-index: 999999;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top:100%;
+    left: 0;
+    background: linear-gradient(0deg, rgba(255,2,66,1) 0%, rgba(252,18,18,1) 0%, rgba(255,111,0,1) 100%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.changelog h1 {
+    color: white;
+    font-size: 32px;
+    text-align: center;
+}
+.changelog button {
+    width: 200px;
+    height: 60px;
+    border-radius: 30px;
+    background-color: white;
+    color: red;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+    border: none;
+    //box-shadow: 0 0 60px 10px rgba(0,0,0,0.3);
+    transition: ease all 0.15s;
+}
+
+.changelog button:hover {
+    opacity: 0.5;
+}
+
+.changelog .info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 0;
+    overflow:hidden;
+}
+
+.changelog .info .changes {
+
+    width: 100%;
+    height: 400px;
+    text-align: center;
 }
 
 .md-modal {
@@ -124,8 +180,6 @@ li {
 	transform: scale(1);
 	opacity: 1;
 }
-
-
 
 .navbar {
     text-align: center;
