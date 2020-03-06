@@ -1,5 +1,5 @@
 // PREFERENCES
-let version = 11;
+let timeso_version = 1;
 
 
 const app = new Vue({
@@ -135,9 +135,9 @@ function close_update() {
 window.onload = function() {
 show_update();
 /*
-    if (getCookie("version") < version) {
+    if (getCookie("timeso_version") < version) {
         show_update();
-        setCookie("version", version, 999999999)
+        setCookie("timeso_version", version, 999999999)
     }
 
 */
