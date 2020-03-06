@@ -49,7 +49,7 @@ function setCookie(cname, cvalue, exdays) {
 }
 
 function get_times() {
-    axios.get("httpps://transportapi.com/v3/uk/bus/stop/43000312301/live.json?app_id=c3e7de7c&app_key=7e0ced32fcfcfc3afe87056d60680d74")
+    axios.get("https://transportapi.com/v3/uk/bus/stop/43000312301/live.json?app_id=c3e7de7c&app_key=7e0ced32fcfcfc3afe87056d60680d74")
     .then(response => {
 
         app.stationName = response['data']['stop_name'];
