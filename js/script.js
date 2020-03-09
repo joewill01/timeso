@@ -1,6 +1,7 @@
 // PREFERENCES
-let version = 11;
+let version = 12;
 
+let current_atco;
 
 const app = new Vue({
     el: "#app",
@@ -21,7 +22,6 @@ const app = new Vue({
           return Promise.reject(error);
         });
 
-        get_times();
     },
 });
 
@@ -48,8 +48,12 @@ function setCookie(cname, cvalue, exdays) {
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
-function get_times() {
-    axios.get("httpps://transportapi.com/v3/uk/bus/stop/43000312301/live.json?app_id=c3e7de7c&app_key=7e0ced32fcfcfc3afe87056d60680d74")
+function get_times(atco = 'blank') {
+    if (atco !== 'blank') {
+        current_atco = atco;
+    }
+
+    axios.get(`https://transportapi.com/v3/uk/bus/stop/${current_atco}/live.json?app_id=c3e7de7c&app_key=7e0ced32fcfcfc3afe87056d60680d74`)
     .then(response => {
 
         app.stationName = response['data']['stop_name'];
@@ -105,6 +109,26 @@ function get_times() {
     })
 }
 
+function open_times(atco) {
+    anime({
+        easing: "easeOutExpo",
+        duration: 500,
+        targets: "#times",
+        left: 0
+    })
+
+    get_times(atco);
+}
+
+function close_times() {
+    anime({
+        easing: "easeOutExpo",
+        duration: 500,
+        targets: "#times",
+        left: "100%"
+    })
+}
+
 function show_update() {
     changes_animation = new anime.timeline({
         easing: "easeOutExpo",
@@ -133,12 +157,9 @@ function close_update() {
 }
 
 window.onload = function() {
-show_update();
-/*
     if (getCookie("version") < version) {
         show_update();
         setCookie("version", version, 999999999)
     }
 
-*/
 }

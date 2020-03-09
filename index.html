@@ -28,34 +28,83 @@
         <div class="changelog" id="changelog">
             <h1>Timeso has<br>been updated!</h1>
             <div class="info" id="info">
-
+                <p>- Added multiple bus stop support</p>
                 <button onclick="close_update()">get started</button>
             </div>
         </div>
-        <div class="navbar">
 
-            <span class="icon back_arrow"></span>
-            <button class="nav-btn back">
-                Back
-            </button>
+        <div class="stops">
+            <div class="navbar">
+                <p class="header">Stops</p>
+            </div>
 
-            <span onclick="get_times()" class="refresh"></span>
-
-            <p class="header" v-if="stationName">{{ stationName }}</p>
-            <p class="header" v-else></p>
+            <div class="list" style="height: calc(100% - 44px);">
+                <ul>
+                    <li onclick="open_times('43000312301')">
+                        <span class="destination">Clive Road (to Stourbridge)</span>
+                    </li>
+                    <li onclick="open_times('43000312304')">
+                        <span class="destination">Clive Road (to Birmingham)</span>
+                        <span class="breaker"></span>
+                    </li>
+                    <li onclick="open_times('43000822511')">
+                        <span class="destination">Stourbridge Interchange (Stand H)</span>
+                        <span class="breaker"></span>
+                    </li>
+                    <li onclick="open_times('43000803901')">
+                        <span class="destination">High Street (X10 => 9 swap stop)</span>
+                        <span class="breaker"></span>
+                    </li>
+                    <li onclick="open_times('43000835807')">
+                        <span class="destination">Merry Hill (Stand G)</span>
+                        <span class="breaker"></span>
+                    </li>
+                    <li onclick="open_times('43000313401')">
+                        <span class="destination">Quinton Church (to Birmingham)</span>
+                        <span class="breaker"></span>
+                    </li>
+                    <li onclick="open_times('43000313402')">
+                        <span class="destination">Quinton Church (to Stourbridge)</span>
+                        <span class="breaker"></span>
+                    </li>
+                    <li>
+                        <span class="destination">hmu if you want more stops</span>
+                        <span class="breaker"></span>
+                    </li>
+                </ul>
+            </div>
 
         </div>
 
-        <div class="content">
-            <ul>
-                <li v-for="prediction in predictions">
-                    <span class="bus">{{ prediction['bus'] }}</span>
-                    <span class="destination">{{ prediction['destination'] }}</span>
-                    <span class="live" v-if="prediction['live']">{{ prediction['timeToArrivalReadable'] }}</span>
-                    <span class="time" v-else>{{ prediction['timeToArrivalReadable'] }}</span>
-                    <span class="breaker"></span>
-                </li>
-            </ul>
+        <div class="times" id="times">
+            <div class="navbar">
+                <div onclick="close_times()">
+                    <span class="icon back_arrow"></span>
+                    <button class="nav-btn back">
+                        Back
+                    </button>
+                </div>
+                <span onclick="get_times()" class="refresh"></span>
+
+                <p class="header" v-if="stationName">{{ stationName }}</p>
+                <p class="header" v-else></p>
+            </div>
+
+            <div class="list">
+                <ul>
+                    <li v-for="prediction in predictions">
+                        <span class="bus">{{ prediction['bus'] }}</span>
+                        <span class="destination">{{ prediction['destination'] }}</span>
+                        <span class="live" v-if="prediction['live']">{{ prediction['timeToArrivalReadable'] }}</span>
+                        <span class="time" v-else>{{ prediction['timeToArrivalReadable'] }}</span>
+                        <span class="breaker"></span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="tab-bar">
+                <span class="favorite"></span>
+            </div>
         </div>
 
         <div class="md-modal md-effect-1" id="modal-1">
@@ -66,9 +115,6 @@
         </div>
 	    <div class="md-overlay"></div>
 
-        <div class="tab-bar">
-            <span class="favorite"></span>
-        </div>
     </div>
 
 </body>
