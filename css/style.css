@@ -83,7 +83,8 @@ li {
     flex-direction: column;
     width: 100%;
     height: 0;
-    overflow:hidden;
+    overflow: hidden;
+    text-align: center;
 }
 
 .changelog .info .changes {
@@ -197,20 +198,41 @@ li {
     height: 44px;
     line-height: 44px;
     position: fixed;
+
+    display: grid;
+    grid-template-columns: 100px auto 100px;
+    grid-template-rows: 100%;
 }
 
-.navbar .header {
+.nav-title {
     color: white;
     font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
     font-size: 17px;
     font-weight: 600;
     margin: 0;
+
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
 }
 
 .navbar-back-button {
     position: relative;
     height: 44px;
     width: 70px;
+
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+.nav-icon {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
 }
 
 .nav-btn {

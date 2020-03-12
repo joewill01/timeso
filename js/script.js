@@ -1,5 +1,5 @@
 // PREFERENCES
-let version = 13;
+let version = 14;
 
 let current_atco;
 
@@ -8,15 +8,14 @@ const app = new Vue({
     data: { predictions: [], stationName: '' },
     mounted() {
         axios.interceptors.request.use(function(config) {
-            $('#modal-1').toggleClass("md-show"); //you can list several class names
-
+            $('#modal-1').toggleClass("md-show");
             return config;
         }, function(error) {
           return Promise.reject(error);
         });
 
         axios.interceptors.response.use(function (response) {
-            $('#modal-1').toggleClass("md-show"); //you can list several class names
+            $('#modal-1').toggleClass("md-show");
           return response;
         }, function (error) {
           return Promise.reject(error);
@@ -24,29 +23,6 @@ const app = new Vue({
 
     },
 });
-
-function getCookie(cname) {
-  var name = cname + "=";
-  var decodedCookie = decodeURIComponent(document.cookie);
-  var ca = decodedCookie.split(';');
-  for(var i = 0; i <ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
-}
-
-function setCookie(cname, cvalue, exdays) {
-  var d = new Date();
-  d.setTime(d.getTime() + (exdays*24*60*60*1000));
-  var expires = "expires="+ d.toUTCString();
-  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
 
 function get_times(atco = 'blank') {
     if (atco !== 'blank') {
@@ -115,7 +91,7 @@ function open_times(atco) {
         duration: 500,
         targets: "#times",
         left: 0
-    })
+    });
 
     get_times(atco);
 }
@@ -130,10 +106,10 @@ function close_times() {
 }
 
 function show_update() {
-    changes_animation = new anime.timeline({
+    let changes_animation = new anime.timeline({
         easing: "easeOutExpo",
-        duration: 1000,
-    })
+        duration: 750,
+    });
 
     changes_animation
     .add({
@@ -142,7 +118,7 @@ function show_update() {
     })
     .add({
         targets: "#info",
-        height: "100px",
+        height: "140px",
         opacity: 1
     }, 1500)
 }
@@ -150,16 +126,15 @@ function show_update() {
 function close_update() {
     anime({
         easing: "easeOutExpo",
-        duration: 1000,
+        duration: 750,
         targets: "#changelog",
         top: "100%"
     })
 }
 
 window.onload = function() {
-    if (getCookie("version") < version) {
+    if (localStorage.getItem("version") < version) {
         show_update();
-        setCookie("version", version, 999999999)
+        localStorage.setItem('version', version)
     }
-
-}
+};
