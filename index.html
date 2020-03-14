@@ -28,55 +28,105 @@
         <div class="changelog" id="changelog">
             <h1>Timeso has<br>been updated!</h1>
             <div class="info" id="info">
-                <p>- Added multiple bus stop support<br>- Fixed this popup showing on every launch<br>- Fixed title on stops</p>
+                <p>- Added favorites, search and settings<br>- Dark mode is now optional</p>
                 <button onclick="close_update()">get started</button>
             </div>
         </div>
 
-        <div class="stops">
-            <div class="navbar">
-                <p class="nav-title">Stops</p>
+        <div class="tab-controller">
+            <div class="bar">
+                <div class="tab active" onclick="changeTab(this, 'tab-favorites')">
+                    <span class="icon favorites"></span>
+                    <h1>Favorites</h1>
+                </div>
+                <div class="tab" onclick="changeTab(this, 'tab-search')">
+                    <span class="icon search"></span>
+                    <h1>Search</h1>
+                </div>
+                <div class="tab" onclick="changeTab(this, 'tab-settings')">
+                    <span class="icon more"></span>
+                    <h1>Settings</h1>
+                </div>
             </div>
 
-            <div class="list" style="height: calc(100% - 44px);">
-                <ul>
-                    <li onclick="open_times('43000312301')">
-                        <span class="destination">Clive Road (to Stourbridge)</span>
-                    </li>
-                    <li onclick="open_times('43000312304')">
-                        <span class="destination">Clive Road (to Birmingham)</span>
-                        <span class="breaker"></span>
-                    </li>
-                    <li onclick="open_times('43000822511')">
-                        <span class="destination">Stourbridge Interchange (Stand H)</span>
-                        <span class="breaker"></span>
-                    </li>
-                    <li onclick="open_times('43000803901')">
-                        <span class="destination">High Street (X10 => 9 swap stop)</span>
-                        <span class="breaker"></span>
-                    </li>
-                    <li onclick="open_times('43000835807')">
-                        <span class="destination">Merry Hill (Stand G)</span>
-                        <span class="breaker"></span>
-                    </li>
-                    <li onclick="open_times('43000313401')">
-                        <span class="destination">Quinton Church (to Birmingham)</span>
-                        <span class="breaker"></span>
-                    </li>
-                    <li onclick="open_times('43000313402')">
-                        <span class="destination">Quinton Church (to Stourbridge)</span>
-                        <span class="breaker"></span>
-                    </li>
-                    <li>
-                        <span class="destination">hmu if you want more stops</span>
-                        <span class="breaker"></span>
-                    </li>
-                </ul>
+            <div class="page favorites show" id="tab-favorites">
+                <div class="navbar">
+                    <p class="nav-title">Favorites</p>
+                </div>
+
+                <div class="list" style="height: calc(100% - 44px);">
+                    <ul>
+                        <li onclick="open_times('43000312301')">
+                            <span class="destination">Clive Road (to Stourbridge)</span>
+                        </li>
+                        <li onclick="open_times('43000312304')">
+                            <span class="destination">Clive Road (to Birmingham)</span>
+                            <span class="breaker"></span>
+                        </li>
+                        <li onclick="open_times('43000822511')">
+                            <span class="destination">Stourbridge Interchange (Stand H)</span>
+                            <span class="breaker"></span>
+                        </li>
+                        <li onclick="open_times('43000803901')">
+                            <span class="destination">High Street (X10 => 9 swap stop)</span>
+                            <span class="breaker"></span>
+                        </li>
+                        <li onclick="open_times('43000835807')">
+                            <span class="destination">Merry Hill (Stand G)</span>
+                            <span class="breaker"></span>
+                        </li>
+                        <li onclick="open_times('43000313401')">
+                            <span class="destination">Quinton Church (to Birmingham)</span>
+                            <span class="breaker"></span>
+                        </li>
+                        <li onclick="open_times('43000313402')">
+                            <span class="destination">Quinton Church (to Stourbridge)</span>
+                            <span class="breaker"></span>
+                        </li>
+                        <li>
+                            <span class="destination">hmu if you want more stops</span>
+                            <span class="breaker"></span>
+                        </li>
+                    </ul>
+                </div>
             </div>
 
+            <div class="page search" id="tab-search">
+                <div class="navbar">
+                    <p class="nav-title">Search</p>
+                </div>
+            </div>
+
+            <div class="page settings" id="tab-settings">
+                <div class="navbar">
+                    <p class="nav-title">Settings</p>
+                </div>
+                <div class="list">
+                    <ul>
+                        <li>
+                            <span class="destination">Dark mode</span>
+                            <div class="switch">
+                                <label class="form-switch">
+                                    <input id="dark_mode_switch" type="checkbox" onclick="toggleDarkMode(this)">
+                                    <i></i>
+                                </label>
+                            </div>
+                        </li>
+                        <li onclick="show_update()">
+                            <span class="destination">View changelog</span>
+                            <span class="breaker"></span>
+                        </li>
+                        <li>
+                            <span class="destination">Version</span>
+                            <span class="data" style="color: grey">{{version}}</span>
+                            <span class="breaker"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
-        <div class="times" id="times">
+        <div class="times" id="times" style="z-index: 100">
             <div class="navbar">
                 <div onclick="close_times()" class="navbar-back-button">
                     <span class="back_arrow"></span>
@@ -84,7 +134,7 @@
                         Back
                     </p>
                 </div>
-                <span onclick="get_times()" class="nav-icon refresh"></span>
+                <span onclick="get_times()" class="refresh"></span>
 
                 <p class="nav-title" v-if="stationName">{{ stationName }}</p>
                 <p class="nav-title" v-else></p>
@@ -102,8 +152,8 @@
                 </ul>
             </div>
 
-            <div class="tab-bar">
-                <span class="favorite"></span>
+            <div class="toolbar">
+                <span class="button favorite"></span>
             </div>
         </div>
 
@@ -119,13 +169,13 @@
 
 </body>
 
-<link rel="stylesheet" type="text/css" href="css/style.css?v=1.7">
+<link rel="stylesheet" type="text/css" href="css/style.css?v=1.6">
 <script src="js/anime.min.js"></script>
 <script src="js/jquery-3.4.1.min.js"></script>
 <script src="js/vue.min.js"></script>
 <script src="js/axios.min.js"></script>
 <script src="js/moment.js"></script>
-<script src="js/script.js?v=1.7"></script>
+<script src="js/script.js?v=1.6"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 

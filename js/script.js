@@ -1,5 +1,5 @@
 // PREFERENCES
-let version = 14;
+let version = 15;
 
 let current_atco;
 
@@ -132,9 +132,95 @@ function close_update() {
     })
 }
 
+function changeTab(tab_button, change_to) {
+    let all_tabs = tab_button.parentElement.getElementsByClassName("tab");
+    let all_pages = tab_button.parentElement.parentElement.getElementsByClassName("page");
+
+    for (let tab of all_tabs) {
+        tab.classList.remove("active");
+    }
+
+    for (let page of all_pages) {
+        page.classList.remove("show")
+    }
+
+    tab_button.classList.add("active");
+    document.getElementById(change_to).classList.add("show");
+}
+
+function changeColorMode(color_mode) {
+    let root = document.documentElement;
+
+    if (color_mode === 'dark') {
+        root.style.setProperty("--bar-color", "var(--dark-bar-color)");
+        root.style.setProperty("--main-color", "var(--dark-main-color)");
+        root.style.setProperty("--secondary-color", "var(--dark-secondary-color)");
+        root.style.setProperty("--line-color", "var(--dark-line-color)");
+        root.style.setProperty("--main-text-color", "var(--dark-main-text-color)");
+        root.style.setProperty("--secondary-text-color", "var(--dark-secondary-text-color)");
+        root.style.setProperty("--navbar-bg-color", "var(--dark-navbar-bg-color)");
+        root.style.setProperty("--navbar-border-color", "var(--dark-navbar-border-color)");
+        root.style.setProperty("--navbar-text-color", "var(--dark-navbar-text-color)");
+        root.style.setProperty("--navbar-button-color", "var(--dark-navbar-button-color)");
+        root.style.setProperty("--tabbar-bg-color", "var(--dark-tabbar-bg-color)");
+        root.style.setProperty("--tabbar-border-color", "var(--dark-tabbar-border-color)");
+        root.style.setProperty("--tabbar-icon-color", "var(--dark-tabbar-icon-color)");
+        root.style.setProperty("--tabbar-icon-selected-color", "var(--dark-tabbar-icon-selected-color)");
+        root.style.setProperty("--toolbar-button-color", "var(--dark-toolbar-button-color)");
+        root.style.setProperty("--toolbar-bg-color", "var(--dark-toolbar-bg-color)");
+        root.style.setProperty("--toolbar-border-color", "var(--dark-toolbar-border-color)");
+        root.style.setProperty("--switch-selected-color", "var(--dark-switch-selected-color)");
+        root.style.setProperty("--switch-unselected-color", "var(--dark-switch-unselected-color)");
+        root.style.setProperty("--switch-toggle-color", "var(--dark-switch-toggle-color)");
+
+        document.getElementById("dark_mode_switch").checked = true;
+
+    } else if (color_mode === 'light') {
+        root.style.setProperty("--bar-color", "var(--light-bar-color)");
+        root.style.setProperty("--main-color", "var(--light-main-color)");
+        root.style.setProperty("--secondary-color", "var(--light-secondary-color)");
+        root.style.setProperty("--line-color", "var(--light-line-color)");
+        root.style.setProperty("--main-text-color", "var(--light-main-text-color)");
+        root.style.setProperty("--secondary-text-color", "var(--light-secondary-text-color)");
+        root.style.setProperty("--navbar-bg-color", "var(--light-navbar-bg-color)");
+        root.style.setProperty("--navbar-border-color", "var(--light-navbar-border-color)");
+        root.style.setProperty("--navbar-text-color", "var(--light-navbar-text-color)");
+        root.style.setProperty("--navbar-button-color", "var(--light-navbar-button-color)");
+        root.style.setProperty("--tabbar-bg-color", "var(--light-tabbar-bg-color)");
+        root.style.setProperty("--tabbar-border-color", "var(--light-tabbar-border-color)");
+        root.style.setProperty("--tabbar-icon-color", "var(--light-tabbar-icon-color)");
+        root.style.setProperty("--tabbar-icon-selected-color", "var(--light-tabbar-icon-selected-color)");
+        root.style.setProperty("--toolbar-button-color", "var(--light-toolbar-button-color)");
+        root.style.setProperty("--toolbar-bg-color", "var(--light-toolbar-bg-color)");
+        root.style.setProperty("--toolbar-border-color", "var(--light-toolbar-border-color)");
+        root.style.setProperty("--switch-selected-color", "var(--light-switch-selected-color)");
+        root.style.setProperty("--switch-unselected-color", "var(--light-switch-unselected-color)");
+        root.style.setProperty("--switch-toggle-color", "var(--light-switch-toggle-color)");
+
+        document.getElementById("dark_mode_switch").checked = false;
+    }
+}
+
+function toggleDarkMode(checkbox) {
+    if (checkbox.checked) {
+        changeColorMode("dark");
+        localStorage.setItem("color_mode", "dark");
+    } else {
+        changeColorMode("light");
+        localStorage.setItem("color_mode", "light");
+    }
+}
+
 window.onload = function() {
     if (localStorage.getItem("version") < version) {
         show_update();
         localStorage.setItem('version', version)
     }
+
+    if (localStorage.getItem("color_mode") === "dark") {
+        changeColorMode("dark");
+    } else {
+        changeColorMode("light");
+    }
+
 };
